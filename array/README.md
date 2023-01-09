@@ -32,6 +32,53 @@ Here are some common functions that you might use when working with character ar
 
 > It's worth noting that C-style strings have some limitations, and in modern C++ it is generally recommended to use `std::string` instead. `std::string` has many of the same functions as character arrays, as well as additional functionality and improved performance in some cases.
 
+
+## Here are some important points about two-dimensional arrays in C++:
+
+1. A two-dimensional array is an array of arrays, where each inner array represents a row of the overall array.
+
+2. To declare a two-dimensional array in C++, you can use the following syntax:
+```cpp
+type name[size1][size2];
+```
+where type is the type of elements in the array, name is the name of the array, size1 is the number of rows in the array, and size2 is the number of columns in the array.
+3. To access an element of the array, you can use the following syntax:
+```cpp
+name[i][j]
+```
+where i is the index of the row and j is the index of the column. The indices start at 0, so the first row is row 0 and the first column is column 0.
+4. When you pass a two-dimensional array to a function, you need to specify the size of the second dimension, but not the size of the first dimension. For example:
+```cpp
+void printArray(int arr[][10], int rows);
+```
+5. You can initialize a two-dimensional array in C++ by enclosing the initial values in curly braces. For example:
+```cpp
+int arr[3][4] = { {1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12} };
+```
+
+### How two dimensional arrays are stored in memory in CPP ? 
+
+In C++, two-dimensional arrays are stored in a contiguous block of memory. The elements of the array are stored in row-major order, which means that the elements of each row are stored together and the rows are stored one after the other.
+
+For example, consider the following two-dimensional array:
+```cpp
+int arr[3][4] = { {1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12} };
+```
+This array will be stored in memory as follows:
+```
+  1   2   3   4   5   6   7   8   9  10  11  12
+  |   |   |   |   |   |   |   |   |   |   |   |
+  -------------------------------------------------
+  ^               ^               ^
+  |               |               |
+arr[0][0]      arr[1][0]        arr[2][0]
+```
+Each element of the array is stored at a specific memory location, and the memory locations of the elements are determined by the indices of the element in the array. For example, the memory location of `arr[i][j]` is determined by the following formula:
+```
+location = base_address + ((i * number_of_columns) + j) * size_of_element
+```
+Here, base_address is the memory address of the first element of the array (`arr[0][0]`), number_of_columns is the number of columns in the array, and size_of_element is the size of each element in the array (in bytes).
+
 ## Summary
 
 Arrays are an essential data structure in many programming languages, and they are often used to store collections of items. One important thing to consider when using arrays is the space and time complexity of different operations. Here are some key points to consider:
